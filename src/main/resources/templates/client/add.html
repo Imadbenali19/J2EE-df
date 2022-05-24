@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/default}">
+
+<head>
+	<title>Ajout d'un developpeur</title>
+</head>
+
+<body>
+	<section layout:fragment="contenu">
+		<form th:action="@{/mvc/client/add}" th:object="${client}" method="post">
+			
+			<div class="form-group"> First Name: <input th:errorclass="alert-danger" class="form-control" type="text" id="nom"
+					name="name" th:field="*{name}" /></div>
+			<div class="form-group"> Last Name: <input th:errorclass="alert-danger" class="form-control" type="text"
+					id="lastName" name="lname" th:field="*{lname}" /></div>
+			<div class="form-group"> Password: <input th:errorclass="alert-danger" class="form-control" type="text"
+			id="lastName" name="password" th:field="*{password}" /></div>
+			<div class="form-group"> Username: <input th:errorclass="alert-danger" class="form-control" type="text"
+			id="lastName" name="username" th:field="*{username}" /></div>
+			<div><button class="btn btn-primary" type="submit">Ajouter</button></div>
+			<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger" role="alert">
+				<li th:each="err:  ${#fields.errors('*')}" th:text="${err}" />
+			</ul>
+		</form>
+	</section>
+
+
+</body>
+
+</html>

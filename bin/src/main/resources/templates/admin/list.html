@@ -1,0 +1,40 @@
+<!doctype html>
+<html xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"layout:decorate="~{layout/default}">
+
+<head>
+
+	<title>Utilisateurs</title>
+</head>
+
+<body>
+	<section layout:fragment="contenu">
+	<h1>Admins</h1>
+	<div> <a th:href="@{/mvc/admin/add}" class="btn btn-primary">Ajouter</a> </div>
+	<table class="table">
+		<thead class="table-dark">
+			<tr>
+				<th scope="col">Id</th>
+				<th scope="col">firstName</th>
+				<th scope="col">lastName</th>
+				<th scope="col"></th>
+				<th scope="col"></th>
+
+			</tr>
+		</thead>
+		<tbody>
+
+			<tr th:each="u:${admins}">
+				<th scope="row" th:text="${u.id}">Id</th>
+				<td th:text="${u.name}">First Name</td>
+				<td th:text="${u.lname}">Last Name</td>
+				<td> <a th:href="@{/admin/edit/{id}(id=${u.id})}" class="btn btn-success" />Editer
+				</td>
+				<td> <a th:href="@{/admin/delete/{id}(id=${u.id})}" class="btn btn-danger" />Supprimer</td>
+			</tr>
+		</tbody>
+	</table>
+
+</section>
+</body>
+
+</html>

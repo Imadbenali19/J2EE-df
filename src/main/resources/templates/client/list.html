@@ -1,0 +1,42 @@
+<!doctype html>
+<html xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"layout:decorate="~{layout/default}">
+
+<head>
+
+	<title>Utilisateurs</title>
+</head>
+
+<body>
+	<section layout:fragment="contenu">
+	<h1>Tickets</h1>
+	<div> <a th:href="@{/mvc/client/addTicket}" class="btn btn-primary">Ajouter</a> </div>
+	<table class="table">
+		<thead class="table-dark">
+			<tr>
+				<th scope="col">Id</th>
+				<th scope="col">Description</th>
+				<th scope="col">Urgency</th>
+				<th scope="col">State</th>
+				<th scope="col">Environment</th>
+				<th scope="col">Logiciel</th>
+
+			</tr>
+		</thead>
+		<tbody>
+
+			<tr th:each="t:${tickets}">
+				<th scope="row" th:text="${t.id}"></th>
+				<td th:text="${t.descriptionTextuelle}"></td>
+				<td th:text="${t.urgence}"></td>
+				<td th:text="${t.state}"></td>
+				<td th:text="${t.environnementExecution}"></td>
+				<td th:text="${t.logiciel}"></td>
+				
+			</tr>
+		</tbody>
+	</table>
+
+</section>
+</body>
+
+</html>

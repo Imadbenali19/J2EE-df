@@ -1,0 +1,84 @@
+<!doctype html>
+<html xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"layout:decorate="~{layout/default}">
+
+<head>
+
+	<title>Utilisateurs</title>
+</head>
+
+<body>
+	<section layout:fragment="contenu">
+	<h1>Tickets non attribue</h1>
+	<table class="table">
+		<thead class="table-dark">
+			<tr>
+				<th scope="col">Id</th>
+				<th scope="col">Description</th>
+				<th scope="col">Urgency</th>
+				<th scope="col">State</th>
+				<th scope="col">Environment</th>
+				<th scope="col">Logiciel</th>
+				<th scope="col"></th>
+				<th scope="col"></th>
+
+			</tr>
+		</thead>
+		<tbody>
+<!--
+			<tr th:each="t:${tickets}">
+				<th scope="row" ></th>
+				<td th:text="${t.description}"></td>
+				<td th:text="${t.urgency}"></td>
+				<td th:text="${t.state}"></td>
+				<td th:text="${t.environment}"></td>
+				<td th:text="${t.logiciel}"></td>
+				<td> 
+				<select>
+				<option th:each="d:${devs}" th:value="${d.idDev}" th:text="${d.name}" >
+
+				</option >
+
+				</select>
+				</td>
+				<td> <a th:href="@{/mvc/admin/0/tickets/{idTicket}/assign/{idDev}(idTicket=${t.idTicket},idDev=${})}" class="btn btn-primary">Affecter </button></td>
+			</tr>-->
+			<tr th:each="t:${tickets}">
+			<input id="idTicket" type="hidden" th:value="${t.id}" th:attr="name='idTicket'"/>
+				<th scope="row" th:text="${t.id}"></th>
+				<td th:text="${t.descriptionTextuelle}"></td>
+				<td th:text="${t.urgence}"></td>
+				<td th:text="${t.state}"></td>
+				<td th:text="${t.environnementExecution}"></td>
+				<td th:text="${t.logiciel}"></td>
+				<td> 
+				<select id="dev" name="dev">
+				<option th:each="d:${devs}" th:value="${d.id}" th:text="${d.name}" >
+
+				</option >
+
+				</select>
+				</td>
+				<td> <button type="submit" id="btnAssignSubmit"  class="btn btn-primary">Affecter </button></td>
+		
+			</tr>
+		</tbody>
+	</table>
+
+</section>
+
+<script>
+	document.getElementById("btnAssignSubmit").addEventListener("click",(e)=>{
+		console.log("hello");
+		e.preventDefault();
+		const idDev = document.getElementById("dev").value;
+		const idTicket = document.getElementById("idTicket").value;
+		console.log(idDev);
+		console.log(idTicket);
+		fetch(`/mvc/admin/6/tickets/${idTicket}/assign/${idDev}`)
+		
+	})
+
+</script>
+</body>
+
+</html>

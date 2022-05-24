@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+
+<head>
+	<title>Ajout d'un developpeur</title>
+</head>
+
+<body>
+	<section layout:fragment="contenu">
+		<form th:action="@{/mvc/client/addTicket}" th:object="${ticket}" method="post">
+			
+			<div class="form-group"> Description: <input th:errorclass="alert-danger" class="form-control" type="text" id="description"
+					name="description" th:field="*{descriptionTextuelle}" /></div>
+			<div class="form-group"> Priorite: <select th:errorclass="alert-danger" class="form-control" type="text"
+					 name="urgency" th:field="*{urgence}" >
+					 <option value="ELEVEE">Elevee</option>
+					 <option  value="MOYEN">Moyen</option>
+					 <option value="BAS">Bas</option>
+					 </select></div>
+			<div class="form-group"> <input  type="hidden"  th:field="*{state}" th:value="state" th:attr="name='state'" /></div>
+			<div class="form-group"> Environment: <input th:errorclass="alert-danger" class="form-control" type="text"
+					 name="environment" th:field="*{environnementExecution}" /></div>
+			<div class="form-group"> Logiciel: <input th:errorclass="alert-danger" class="form-control" type="text"
+					 name="logiciel" th:field="*{logiciel}" /></div>				
+			<div><button class="btn btn-primary" type="submit">Cree</button></div>
+			<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger" role="alert">
+				<li th:each="err:  ${#fields.errors('*')}" th:text="${err}" />
+			</ul>
+		</form>
+	</section>
+
+
+</body>
+
+</html>
